@@ -4,10 +4,10 @@ Programa feito para análise experimental dos seguintes tipos de sort:
 -quickSort
 -radixSort
 
-O código dos sort em si foram retirados do site:
--bubbleSort:https://www.geeksforgeeks.org/bubble-sort/
--quickSort: https://www.geeksforgeeks.org/quick-sort/
--radixSort: https://www.geeksforgeeks.org/radix-sort/
+O código dos sort em si foram retirados do site:  
+-bubbleSort:https://www.geeksforgeeks.org/bubble-sort/  
+-quickSort: https://www.geeksforgeeks.org/quick-sort/  
+-radixSort: https://www.geeksforgeeks.org/radix-sort/  
 
 Programa feito em Python 3.10.5, usando VS e VSCode
 
