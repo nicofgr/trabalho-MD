@@ -194,11 +194,6 @@ def analisaTempo():
     print("Tamanho final:", tamInicial + (tamIntervalos * (numIntervalos - 1)))
     print("Tamanho da amostra:", tamAmostra)
 
-    saida = open("saida.txt", 'w')
-    saida.writelines(str(resMedia))
-    saida.close()
-
-
     mostraGrafico(resultados, resMedia, sortEscolha)
 
 #Janela
