@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>533de687-16d4-4b2a-aaf4-ccbf2b32dada</ProjectGuid>
+    <ProjectGuid>73eaf540-d657-4913-b724-f3089de0ab89</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>todosSorts.py</StartupFile>
+    <StartupFile>graficoMisto.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>todosSorts</Name>
-    <RootNamespace>todosSorts</RootNamespace>
+    <Name>graficoMisto</Name>
+    <RootNamespace>graficoMisto</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="todosSorts.py" />
+    <Compile Include="graficoMisto.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

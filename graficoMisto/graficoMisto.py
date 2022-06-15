@@ -113,7 +113,7 @@ def radixSort(arr):
 def lerValores():
     global tamInicial
     global tamIntervalos 
-    global numIntervalos 
+    global numIntervalos
     global tamAmostra 
     tamInicial = int(values['tamInicial'])
     tamIntervalos = int(values['tamIntervalos'])
@@ -146,7 +146,7 @@ def analisaTempo():
     #Variaveis
     resultados = [[],[]] #Tamanho x Valores
     resMedia = [[],[]] #Tamanho x Valores
-    for i in range(numIntervalos): # i vai de 0 a (numIntervalos -1)
+    for i in range(numIntervalos + 1): # i vai de 0 a (numIntervalos -1)
         numElementos = tamInicial + (tamIntervalos * i)
 
         for j in range(tamAmostra):
@@ -177,7 +177,7 @@ def analisaTempo():
             print('Tempo de execucao: ', tTotal, 'segundos')
 
     #Media
-    for i in range(numIntervalos):
+    for i in range(numIntervalos + 1):
         resMedia[0].append(tamInicial + (tamIntervalos * i)) #Num elementos
         resMedia[1].append(0)             #Media do tempo
 
@@ -187,21 +187,21 @@ def analisaTempo():
         resMedia[1][i] /= tamAmostra
         
     print('MEDIA')
-    print(resMedia[0])
+    print(resMedia[0]) 
     print(resMedia[1])
 
     print("Tamanho inicial:", tamInicial)
-    print("Tamanho final:", tamInicial + (tamIntervalos * (numIntervalos - 1)))
-    print("Tamanho da amostra:", tamAmostra)
+    print("Tamanho final:", tamInicial + (tamIntervalos * (numIntervalos)))
+    print("Tamanho das amostras:", tamAmostra)
 
     mostraGrafico(resultados, resMedia, sortEscolha)
 
 #Janela
 layout = [
     [sg.Text('Tamanho inicial'), sg.Input(key = 'tamInicial', size=(10,1))],
-    [sg.Text('Tamanho dos intervalos'), sg.Input(key = 'tamIntervalos', size=(10,1))],
-    [sg.Text('Numero de intervalos'), sg.Input(key = 'numIntervalos', size=(10,1))],
-    [sg.Text('Tamanho da amostra'), sg.Input(key = 'tamAmostra', size=(10,1))],
+    [sg.Text('Tamanho dos incrementos'), sg.Input(key = 'tamIntervalos', size=(10,1))],
+    [sg.Text('Quantidade de incrementos'), sg.Input(key = 'numIntervalos', size=(10,1))],
+    [sg.Text('Tamanho das amostras'), sg.Input(key = 'tamAmostra', size=(10,1))],
     [sg.Button('bubbleSort'), sg.Button('quickSort'), sg.Button('radixSort')]
 ]
 
