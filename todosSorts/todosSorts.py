@@ -125,15 +125,17 @@ def lerValores():
 #GRAFICO
 def mostraGrafico(resultados, resMedia, sortEscolha):
     #Grafico
-    plt.scatter(resultados[0], resultados[1], label = 'Dados brutos')
-    plt.plot(resMedia[0], resMedia[1], 'r--', label = 'Media')
     match sortEscolha:
         case 1:
-            plt.title('bubbleSort')
+            plt.scatter(resultados[0], resultados[1], label = 'Dados bubble')
+            plt.plot(resMedia[0], resMedia[1], 'r--', label = 'Media bubble')
         case 2:
-            plt.title('quickSort')
+            plt.scatter(resultados[0], resultados[1], label = 'Dados quick')
+            plt.plot(resMedia[0], resMedia[1], 'r--', label = 'Media quick')
         case 3:
-            plt.title('radixSort')
+            plt.scatter(resultados[0], resultados[1], label = 'Dados radix')
+            plt.plot(resMedia[0], resMedia[1], 'r--', label = 'Media radix')
+    plt.title('Grafico Misto')
     plt.xlabel('Quantidade de elementos')
     plt.ylabel('Tempo de execucao (segundos)')
     plt.legend()
@@ -191,6 +193,11 @@ def analisaTempo():
     print("Tamanho inicial:", tamInicial)
     print("Tamanho final:", tamInicial + (tamIntervalos * (numIntervalos - 1)))
     print("Tamanho da amostra:", tamAmostra)
+
+    saida = open("saida.txt", 'w')
+    saida.writelines(str(resMedia))
+    saida.close()
+
 
     mostraGrafico(resultados, resMedia, sortEscolha)
 
