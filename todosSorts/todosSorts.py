@@ -2,6 +2,7 @@
 from numpy import random
 from matplotlib import pyplot as plt
 import time
+import PySimpleGUI as sg
 
 #FUNCOES
 #bubbleSort:
@@ -108,6 +109,19 @@ def radixSort(arr):
         countingSort(arr, exp)
         exp *= 10
 
+
+def lerValores():
+    global tamInicial
+    global tamIntervalos 
+    global numIntervalos 
+    global tamAmostra 
+    tamInicial = int(values['tamInicial'])
+    tamIntervalos = int(values['tamIntervalos'])
+    numIntervalos = int(values['numIntervalos'])
+    tamAmostra = int(values['tamAmostra'])
+
+
+
 #GRAFICO
 def mostraGrafico(resultados, resMedia, sortEscolha):
     #Grafico
@@ -123,82 +137,90 @@ def mostraGrafico(resultados, resMedia, sortEscolha):
     plt.xlabel('Quantidade de elementos')
     plt.ylabel('Tempo de execucao (segundos)')
     plt.legend()
-
     plt.show()
 
-#MENU
-def menu():
-    print("[1] bubbleSort")
-    print("[2] quickSort")
-    print("[3] radixSort")
-
-
-
 #PROGRAMA
-#Variaveis
-resultados = [[],[]] #Tamanho x Valores
-resMedia = [[],[]] #Tamanho x Valores
+def analisaTempo():
+    #Variaveis
+    resultados = [[],[]] #Tamanho x Valores
+    resMedia = [[],[]] #Tamanho x Valores
+    for i in range(numIntervalos): # i vai de 0 a (numIntervalos -1)
+        numElementos = tamInicial + (tamIntervalos * i)
 
-tamInicial = int(input("Digite a quantidade de elementos que deseja comecar: "))
-tamIntervalos = int(input("Digite o tamanho dos intervalos: "))
-numIntervalos = int(input("Digite quantos intervalos deseja ter: "))
-tamAmostra = int(input("Digite o tamanho de amostras que deseja fazer para cada tamanho: "))
-menu()
-sortEscolha = int(input("Escolha qual sort deseja usar:"))
+        for j in range(tamAmostra):
 
-for i in range(numIntervalos): # i vai de 0 a (numIntervalos -1)
-    numElementos = tamInicial + (tamIntervalos * i)
+            arr = random.randint(100, size=(numElementos))
 
-    for j in range(tamAmostra):
+            # Function Call
+            match sortEscolha:
+                case 1:
+                    tInicial = time.process_time()
+                    bubbleSort(arr)
+                    tFinal = time.process_time()
+                case 2:
+                    tInicial = time.process_time()
+                    quick_sort(arr, 0, len(arr) - 1)
+                    tFinal = time.process_time()
+                case 3:
+                    tInicial = time.process_time()
+                    radixSort(arr)
+                    tFinal = time.process_time()
 
-        arr = random.randint(100, size=(numElementos))
+            tTotal = tFinal - tInicial
 
-        # Function Call
-        match sortEscolha:
-            case 1:
-                tInicial = time.process_time()
-                bubbleSort(arr)
-                tFinal = time.process_time()
-                print('bubbleSort')
-            case 2:
-                tInicial = time.process_time()
-                quick_sort(arr, 0, len(arr) - 1)
-                tFinal = time.process_time()
-                print('quickSort')
-            case 3:
-                tInicial = time.process_time()
-                radixSort(arr)
-                tFinal = time.process_time()
-                print('radixSort')
-
-        tTotal = tFinal - tInicial
-
-        resultados[0].append(numElementos)
-        resultados[1].append(tTotal)
-
+            resultados[0].append(numElementos)
+            resultados[1].append(tTotal)
         
-        print('Numero de elementos:', numElementos )
-        print('Tempo de execucao: ', tTotal, 'segundos')
+            print('Numero de elementos:', numElementos )
+            print('Tempo de execucao: ', tTotal, 'segundos')
 
-#Media
-for i in range(numIntervalos):
-    resMedia[0].append(tamInicial + (tamIntervalos * i)) #Num elementos
-    resMedia[1].append(0)             #Media do tempo
+    #Media
+    for i in range(numIntervalos):
+        resMedia[0].append(tamInicial + (tamIntervalos * i)) #Num elementos
+        resMedia[1].append(0)             #Media do tempo
 
-    for j in range(tamAmostra):
-        resMedia[1][i] = (resMedia[1][i] + resultados[1][(tamAmostra*i)+j])
+        for j in range(tamAmostra):
+            resMedia[1][i] = (resMedia[1][i] + resultados[1][(tamAmostra*i)+j])
 
-    resMedia[1][i] /= tamAmostra
+        resMedia[1][i] /= tamAmostra
         
-print('MEDIA')
-print(resMedia[0])
-print(resMedia[1])
+    print('MEDIA')
+    print(resMedia[0])
+    print(resMedia[1])
 
-print("Tamanho inicial:", tamInicial)
-print("Tamanho final:", tamInicial + (tamIntervalos * (numIntervalos - 1)))
-print("Tamanho da amostra:", tamAmostra)
+    print("Tamanho inicial:", tamInicial)
+    print("Tamanho final:", tamInicial + (tamIntervalos * (numIntervalos - 1)))
+    print("Tamanho da amostra:", tamAmostra)
 
-mostraGrafico(resultados, resMedia, sortEscolha)
+    mostraGrafico(resultados, resMedia, sortEscolha)
+
+#Janela
+layout = [
+    [sg.Text('Tamanho inicial'), sg.Input(key = 'tamInicial', size=(10,1))],
+    [sg.Text('Tamanho dos intervalos'), sg.Input(key = 'tamIntervalos', size=(10,1))],
+    [sg.Text('Numero de intervalos'), sg.Input(key = 'numIntervalos', size=(10,1))],
+    [sg.Text('Tamanho da amostra'), sg.Input(key = 'tamAmostra', size=(10,1))],
+    [sg.Button('bubbleSort'), sg.Button('quickSort'), sg.Button('radixSort')]
+]
+
+window = sg.Window('Analise Experimental', layout = layout)
+
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED:
+        break
+    if event == 'bubbleSort':
+        lerValores()
+        sortEscolha = 1
+        analisaTempo()
+    if event == 'quickSort':
+        lerValores()
+        sortEscolha = 2
+        analisaTempo()
+    if event == 'radixSort':
+        lerValores()
+        sortEscolha = 3
+        analisaTempo()
 
 
 
