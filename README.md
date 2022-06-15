@@ -1,8 +1,8 @@
-# trabalhoMD
-Programa feito para análise experimental dos seguintes tipos de sort:
--bubbleSort
--quickSort
--radixSort
+# trabalho-MD
+Programa feito para análise experimental dos seguintes tipos de sort:  
+-bubbleSort  
+-quickSort  
+-radixSort  
 
 O código dos sort em si foram retirados do site:  
 -bubbleSort:https://www.geeksforgeeks.org/bubble-sort/  
