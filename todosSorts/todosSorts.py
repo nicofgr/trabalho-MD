@@ -128,13 +128,13 @@ def mostraGrafico(resultados, resMedia, sortEscolha):
     match sortEscolha:
         case 1:
             plt.scatter(resultados[0], resultados[1], label = 'Dados bubble')
-            plt.plot(resMedia[0], resMedia[1], 'r--', label = 'Media bubble')
+            plt.plot(resMedia[0], resMedia[1], '--', label = 'Media bubble')
         case 2:
             plt.scatter(resultados[0], resultados[1], label = 'Dados quick')
-            plt.plot(resMedia[0], resMedia[1], 'r--', label = 'Media quick')
+            plt.plot(resMedia[0], resMedia[1], '--', label = 'Media quick')
         case 3:
             plt.scatter(resultados[0], resultados[1], label = 'Dados radix')
-            plt.plot(resMedia[0], resMedia[1], 'r--', label = 'Media radix')
+            plt.plot(resMedia[0], resMedia[1], '--', label = 'Media radix')
     plt.title('Grafico Misto')
     plt.xlabel('Quantidade de elementos')
     plt.ylabel('Tempo de execucao (segundos)')
